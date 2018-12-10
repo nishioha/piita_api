@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_10_093241) do
+ActiveRecord::Schema.define(version: 2018_11_10_093553) do
+
+  create_table "doc_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "doc_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doc_id", "tag_id"], name: "index_doc_tags_on_doc_id_and_tag_id", unique: true
+    t.index ["doc_id"], name: "index_doc_tags_on_doc_id"
+    t.index ["tag_id"], name: "index_doc_tags_on_tag_id"
+  end
 
   create_table "docs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "uuid", limit: 36
